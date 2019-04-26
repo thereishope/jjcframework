@@ -13,4 +13,14 @@ com.xx.frame框架包含(**fastdev**,**adaptor**,**plugins**,**tools**)，它有
 - 在吞吐量及响应速度相对于spring传统调用方式均有小幅提升
 - 按需插拔，可自由选择需要集成的模块
 - 简单易用，高度封装
-## 优势
+- 核心脚手架稍作修改仍然兼容spring 3
+## 项目环境介绍
+jdk:1.8+(plugins需要使用stream流进行并行计算,其他模块均可使用jdk1.7进行编译)
+spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然使用jdk7）
+## 模块简介
+  注： 后续将以中文名称进行描述
+ - dev:开发脚手架
+ - adapter:适配层
+ - plugins:插件层
+ - tools:工具层
+
