@@ -1,13 +1,17 @@
 # jjcframework
 ## 前言
 
-   1. 由于部门成立后，团队规模以及项目数量在持续增长，不同的开发团队在框架选型或搭建上重复投入人力，并且部门成员跨团队流动增加了学习不同框架的成本
-   2. 由于项目启动阶段时间仓促，搭建的框架过于简陋，项目交付后不利于部门品牌影响力的提升
- 
+   在现实工作中，我们需要一个什么样的开发框架？
+   ## 
+   ![image](https://github.com/thereishope/gitconfig/blob/master/repo/timg.jpg)
+   ## 
+   **能促进团队代码风格统一**、**扩展性强**、**有点思想**、**性能得不差吧**、**使用简单**、**最好能生发**
+   ![image](https://github.com/thereishope/gitconfig/blob/master/repo/timg2.jpg)
+   
 ## 特点
   jjcframework框架包含(**dev**,**transfer**,**plugin**,**tool**)，它有如下**特点**
 
-  - 统一传参样式以及返回参数(可自由定制)，统一异常处理等，开发人员可更专注业务开发，且统一风格后减小维护成本
+  - 统一传参样式以及返回参数(可自由定制)，统一异常处理，开发人员可更专注业务开发，且统一风格后减小维护成本
   - 无需aop、拦截器等即可完成请求前置及后置处理，提升开发便利性的同时提升了业务响应速度
   - 提供扩展点，实现扩展接口，自由定制项目需求
   - 在吞吐量及响应速度相对于spring传统调用方式均有小幅提升
@@ -116,7 +120,7 @@
     }
 ``` 
   ####  1.4 调用目标业务层,所有业务层均需继承AbstractService并实现BuisServiceInvoke,这样请求就可以适配到具体业务类进行调用，且可实现请求后置处理 
-
+```java
 public interface BuisServiceInvoke {
 
     public <T> T excute(DevParamContainer container, Class<T> t) throws Exception;
@@ -142,7 +146,7 @@ public abstract class AbstractService implements BuisServiceInvoke {
         return res;
     } 
     
-
+```
 ### 2.插件层
 
   注：插件层主要集成依赖了spring的业务工具，例如mybatis以及RestTemplate，且需要对脚手架提供扩展接口，进行业务定制化开发
