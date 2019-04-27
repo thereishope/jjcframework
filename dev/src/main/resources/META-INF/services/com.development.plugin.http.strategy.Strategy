@@ -1,0 +1,3 @@
+com.development.plugin.http.strategy.RequestDetailedStrategy
+com.development.plugin.http.strategy.RequestSectionStrategy
+com.development.plugin.TestPlugin
