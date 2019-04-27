@@ -29,8 +29,9 @@ spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然
 - 启动脚手架(idea：鼠标右键脚手架**DevApplication**，点击Run DevApplication.main(),或者在控制台使用java -jar命令等)
 
 ## 模块详情
-### 脚手架及适配层
-#### controller中获取参数容器及设置业务层元信息细节
+### 1.脚手架及适配层
+- 注：有效提升脚手架吞吐量（容器启动后提前加载BuisServiceInvoke所有实现；缓存业务层方法信息；利用请求前置及后置处理避免aop）
+#### 1.1 controller中获取参数容器及设置业务层元信息细节
 ```java
 @RequestMapping(value = "/login", method = RequestMethod.POST)
     public DevResponse login(@RequestParam("name") String userName,
@@ -49,7 +50,12 @@ spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然
     }
     DevParamContainer类中持有ServiceMethod接口，而所有业务层对象枚举均实现ServiceMethod接口，这样不同业务层枚举均可独立编写，便于管理
 ```
-   #### 实例化参数容器时对请求进行前置处理，例如设置操作时间获取用户IP等
+   #### 1.2 请求前置处理，便于对请求进行加工
+    /**
+     * 初始化参数容器
+     * @author chenjiajun
+     * @date 2019-01-13
+     */
       public DevParamContainer getBaseContainer(){
         //通过request添加基础信息，例如放置在header里的token,用户ip，操作时间等
         DevParamContainer container = new DevParamContainer(){
@@ -60,7 +66,18 @@ spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然
         };
         return container;
     }
-#### 通过参数容器中的方法元信息进行适配调用，并对异常进行统一处理。另外结合项目需要可对返回值进行定制
+     /**
+     * 发起调用
+     * @author chenjiajun
+     * @date 2019-01-13
+     */
+     public DevResponse invoke(DevParamContainer container)throws Exception {
+        DevResponse res = null;
+        DevServiceInvoke devServiceInvoke =  DevServiceInvoke.getInstance();
+        res = devServiceInvoke.doInvoke(container, DevResponse.class);
+        return res;
+    }
+#### 1.3 通过参数容器中的方法元信息进行适配调用，并对异常进行统一处理。另外结合项目需要可对返回值进行定制
   ```java
   public class DevServiceInvoke{
 
@@ -97,7 +114,7 @@ spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然
         return (T) getResponse(e);
     }
 ``` 
-####  调用目标业务层,所有业务层均需继承AbstractService并实现BuisServiceInvoke,这样请求就可以适配到具体业务类进行调用 
+####  1.4 调用目标业务层,所有业务层均需继承AbstractService并实现BuisServiceInvoke,这样请求就可以适配到具体业务类进行调用，且可实现请求后置处理 
 
 public interface BuisServiceInvoke {
 
