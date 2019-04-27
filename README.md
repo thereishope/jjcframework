@@ -18,9 +18,19 @@ jjcframework框架包含(**dev**,**transfer**,**plugin**,**tool**)，它有如�
 jdk:1.8+(plugins需要使用stream流进行并行计算,其他模块均可使用jdk1.7进行编译)
 spring boot:1.5.4（未使用spring boot 2.0，主要考虑到部分项目仍然使用jdk7）
 ## 模块简介
-  注： 后续将以中文名称进行描述
+  注:后续将以中文名称进行描述
  - dev:开发脚手架
- - adapter:适配层
- - plugins:插件层
- - tools:工具层
+ - transfer:适配层
+ - plugin:插件层
+ - tool:工具层
+ ## 如何使用
+- 确保已安装maven3.+
+- 编译工具层、插件层、适配层、脚手架（maven clean install）
+- 启动脚手架(idea：鼠标右键脚手架**DevApplication**，点击Run DevApplication.main(),或者在控制台使用java -jar命令等)
+
+## 模块详情
+### 脚手架
+#### controller中获取参数容器及设置参数细节
+
+
 
