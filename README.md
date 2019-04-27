@@ -142,4 +142,107 @@ public abstract class AbstractService implements BuisServiceInvoke {
     }
 ```
 
+### 2.插件层
+- 注：插件层主要集成依赖了spring的业务工具，例如mybatis以及RestTemplate，且需要对脚手架提供扩展接口，进行业务定制化开发
+#### 2.1 装配
+需要在resource下建立META-INF文件夹提供spring.factories及spring.providers进行bean的装配
+#### 2.2 以http监控为例
+- 提供一个可对外扩展的策略接口
+```java
+/**策略接口
+ * @author chenjiajun
+ * @title StrategyHandlerFactory
+ * @project request
+ * @date 2019-03-16
+ */
+public interface Strategy {
+
+	//获取执行策略
+    public String getStrategy();
+	//执行
+    public <T> void excute(T t);
+	//获取监控分析结果
+    public String getAnalysisMetrics()throws Exception;
+
+}
+```
+- 在脚手架层通过java SPI机制织入策略，并且实现Strategy接口，在插件层利用ServiceLoader进行调用
+```java
+ public void handleMetrics(MetricsTimeModel metricsTimeModel) {
+        try {
+            ServiceLoader<Strategy> serviceLoader = ServiceLoader.load(Strategy.class);
+            if (null != serviceLoader && !serviceLoaderMap.containsKey(SERVICE_LOADER_KEY)) {
+                serviceLoaderMap.put(SERVICE_LOADER_KEY, serviceLoader);
+            }
+            ExecutorService pool = Executors.newFixedThreadPool(2);
+            pool.execute(new AsyncMetricsExcute(metricsTimeModel));
+        } catch (Exception e) {
+            logger.error("MetricsStrategy[handleMetrics]发生异常", e);
+        }
+
+    }
+
+    /**
+     * 异步定长线程处理短任务
+     *
+     * @author chenjiajun
+     * @date 2019-04-24
+     */
+    class AsyncMetricsExcute implements Runnable {
+
+        private MetricsTimeModel metricsTimeModel;
+
+        public AsyncMetricsExcute(MetricsTimeModel metricsTimeModel) {
+            this.metricsTimeModel = metricsTimeModel;
+        }
+
+        @Override
+        public void run() {
+            logger.info("MetricsStrategy[handleMetrics]获取到的strategy[" + RestTemplateWrap.
+                    strategyMap.get("strategy") + "]");
+            Object o = RestTemplateWrap.strategyMap.get("strategy");
+            String strategyName = null != o ? String.valueOf(o) : "detail";
+            ServiceLoader<Strategy> serviceLoader = serviceLoaderMap.get(SERVICE_LOADER_KEY);
+            for (Strategy strategy : serviceLoader) {
+                logger.info("MetricsStrategy[handleMetrics]==" + strategy.getStrategy());
+                if (strategyName.equals(strategy.getStrategy())) {
+                    strategy.excute(metricsTimeModel);
+                }
+            }
+        }
+    }
+```
+### 工具层
+- 注(工具层主要集成与spring无关的业务辅助类，例如json工具类等)
+- 若需要读取spring 配置文件：
+```java
+/**
+ * 工具类加载spring环境配置
+ * 后续将适配基于配置中心的配置读取
+ * @author chenjiajun
+ * @title PropertiesLoadListener
+ * @project dev
+ * @date 2019-04-17
+ */
+@Component
+public class PropertiesLoadListener implements CommandLineRunner {
+
+
+    @Autowired
+    private ApplicationBuilder builder;
+    
+    /**
+     * @author chenjiajun
+     * @date 2019-04-17
+     */
+    @Async
+    public void run(String... args) throws Exception {
+        new CommonHandlerProxy(new PropertiesLoadHandler(
+                builder.getContext())).excute();
+
+    }
+}
+```
+
+
 
