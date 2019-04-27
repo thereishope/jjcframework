@@ -7,7 +7,7 @@
  ## 特点
 jjcframework框架包含(**dev**,**transfer**,**plugin**,**tool**)，它有如下**特点**
 
--  统一传参样式以及返回参数(可自由定制)，统一异常处理等，开发人员可更专注业务开发，且统一风格后减小维护成本
+- 统一传参样式以及返回参数(可自由定制)，统一异常处理等，开发人员可更专注业务开发，且统一风格后减小维护成本
 - 无需aop、拦截器等即可完成请求前置及后置处理，提升开发便利性的同时提升了业务响应速度
 - 提供扩展点，实现扩展接口，自由定制项目需求
 - 在吞吐量及响应速度相对于spring传统调用方式均有小幅提升
@@ -167,7 +167,7 @@ public interface Strategy {
 
 }
 ```
-- 在脚手架层通过java SPI机制织入策略，并且实现Strategy接口，在插件层利用ServiceLoader进行调用
+- 在脚手架层通过java SPI机制（在resource/META-INF下建spi文件）织入策略，并且实现Strategy接口，在插件层利用ServiceLoader进行调用
 ```java
  public void handleMetrics(MetricsTimeModel metricsTimeModel) {
         try {
@@ -217,6 +217,29 @@ public interface Strategy {
 - 注(工具层主要集成与spring无关的业务辅助类，例如json工具类等)
 - 若需要读取spring 配置文件：
 ```java
+
+public class CommonHandlerProxy implements CommonHandler{
+
+    private CommonHandler commonHandler;
+    public CommonHandlerProxy(CommonHandler commonHandler) {
+        this.commonHandler = commonHandler;
+    }
+    
+    public boolean allowance() throws Exception {
+       return  commonHandler.allowance();
+    }
+    
+    public void handle() throws Exception {
+        commonHandler.handle();
+    }
+    
+    public void excute()throws Exception{
+        if(allowance()){
+            handle();
+        }
+    }
+}
+
 /**
  * 工具类加载spring环境配置
  * 后续将适配基于配置中心的配置读取
@@ -244,6 +267,16 @@ public class PropertiesLoadListener implements CommandLineRunner {
     }
 }
 ```
+### 4. 性能介绍
+#### 4.1 测试前提
+- 未对springboot内置tomcat进行进行优化
+- a.分别编写通过适配层调用，b.通过直接注入测试实现接口进行调用
+- 测试项目部署在同一台centos7 机器下
+- apache ab压测工具
+#### 测试结果（5次取均值，1000并发）
+- time taken for test：a(0.587)，b(0.728)
+- Request per second: a(1703.63)，b(1373)
+
 
 
 
