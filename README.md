@@ -139,11 +139,12 @@ public abstract class AbstractService implements BuisServiceInvoke {
              */
         }
         return res;
-    }
-```
+    } 
+    
 
 ### 2.插件层
-- 注：插件层主要集成依赖了spring的业务工具，例如mybatis以及RestTemplate，且需要对脚手架提供扩展接口，进行业务定制化开发
+
+注：插件层主要集成依赖了spring的业务工具，例如mybatis以及RestTemplate，且需要对脚手架提供扩展接口，进行业务定制化开发
 #### 2.1 装配
 需要在resource下建立META-INF文件夹提供spring.factories及spring.providers进行bean的装配
 #### 2.2 以http监控为例
@@ -212,7 +213,7 @@ public interface Strategy {
         }
     }
 ```
-### 工具层
+### 3.工具层
 - 注(工具层主要集成与spring无关的业务辅助类，例如json工具类等)
 - 若需要读取spring 配置文件：
 ```java
