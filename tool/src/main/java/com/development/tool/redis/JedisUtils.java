@@ -6,8 +6,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -31,7 +29,7 @@ public class JedisUtils {
     private static final String OK_CODE = "OK";
     private static final String OK_MULTI_CODE = "+OK";
 
-    private JedisCommonPool pool = null;
+    private DevJedisPool pool = null;
 
     /**
      * 判断返回值是否ok.
@@ -90,7 +88,7 @@ public class JedisUtils {
                     connectionConfig.setPort(port);
                     connectionConfig.setTimeout(timeout);
                 }
-                this.pool = new JedisCommonPool(poolConfig, connectionConfig);
+                this.pool = new DevJedisPool(poolConfig, connectionConfig);
             }
             return new JedisTemplate(this.pool);
         }

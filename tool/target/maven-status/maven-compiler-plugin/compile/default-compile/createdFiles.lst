@@ -8,7 +8,6 @@ com\development\tool\redis\JedisTemplate$24.class
 com\development\tool\redis\JedisTemplate.class
 com\development\tool\redis\JedisTemplate$18.class
 com\development\tool\redis\JedisTemplate$7.class
-com\development\tool\redis\JedisIflytekPool.class
 com\development\tool\redis\JedisTemplate$41.class
 com\development\tool\redis\JedisUtils.class
 com\development\tool\redis\JedisUtils$1.class
@@ -32,6 +31,7 @@ com\development\tool\redis\JedisTemplate$12.class
 com\development\tool\redis\JedisTemplate$27.class
 com\development\tool\redis\JedisTemplate$32.class
 com\development\tool\redis\JedisTemplate$40.class
+com\development\tool\redis\DevJedisPool.class
 com\development\tool\redis\JedisTemplate$52.class
 com\development\tool\redis\JedisTemplate$55.class
 com\development\tool\redis\JedisTemplate$59.class
