@@ -1,7 +1,7 @@
 package com.development.dev.listener.handler.propertiesLoad;
 import com.development.tool.redis.JedisUtils;
+import com.development.transfer.proxy.CommonHandler;
 import org.springframework.context.ApplicationContext;
-
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -41,7 +41,7 @@ public class PropertiesLoadHandler implements CommonHandler {
         setProperties(properties);
     }
 
-    /**
+    /**com.dev.tool工程中持有的静态Properties对象
      * 设置为静态资源后实现共享
       *@author chenjiajun
       *@date 2019-04-18

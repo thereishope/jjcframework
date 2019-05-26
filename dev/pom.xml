@@ -14,13 +14,6 @@
         <version.spring.boot>1.5.4.RELEASE</version.spring.boot>
         <version.github.page>4.1.6</version.github.page>
     </properties>
-
-    <developers>
-        <developer>
-            <id>chenjiajun</id>
-            <email>palading_cr@163.com</email>
-        </developer>
-    </developers>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -37,6 +30,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -45,12 +42,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.15</version>
-        </dependency>
-       、
-        <dependency>
-            <groupId>com.development.framework</groupId>
-            <artifactId>transfer</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -62,13 +53,28 @@
         <!--请求相关的工具类，需spring环境-->
         <dependency>
             <groupId>com.development.framework</groupId>
-            <artifactId>plugin</artifactId>
+            <artifactId>rwSeparation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.development.framework</groupId>
+            <artifactId>devCheck</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.development.framework</groupId>
+            <artifactId>httpPlugin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.development.framework</groupId>
             <artifactId>tool</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.development.framework</groupId>
+            <artifactId>transfer</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

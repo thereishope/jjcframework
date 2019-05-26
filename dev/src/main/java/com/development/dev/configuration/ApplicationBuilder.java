@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author chenjiajun
  * @title ApplicationBuilder
  * @project dev
- * @date 2018-12-16
+ * @date 2018-12-29
  */
 @Component
 public class ApplicationBuilder implements ApplicationContextAware {
@@ -38,7 +38,7 @@ public class ApplicationBuilder implements ApplicationContextAware {
 
     /**
      * @author chenjiajun
-     * @date 2018-12-16
+     * @date 2018-12-29
      */
     public static <T> T getBean(String beanId, Class<T> T) {
         try {
@@ -59,7 +59,7 @@ public class ApplicationBuilder implements ApplicationContextAware {
 
     /**
      * @author chenjiajun
-     * @date 2018-12-16
+     * @date 2018-12-29
      */
     public Object getBean(String beanId) {
         try {

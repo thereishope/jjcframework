@@ -35,8 +35,6 @@ public abstract class AbstractService implements BuisServiceInvoke {
         }
         return res;
     }
-
-
     /**
      * 内存缓存方法反射对象
      * 提高调用效率

@@ -1,12 +1,10 @@
 package com.development.dev.controller;
-
 import com.development.transfer.container.DevParamContainer;
 import com.development.transfer.invoke.DevServiceInvoke;
 import com.development.transfer.respconse.DevResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -23,7 +21,8 @@ public abstract class AbstractController {
     @Autowired
     private HttpServletRequest request;
 
-
+    @Autowired
+    private DevServiceInvoke serviceInvoke;
 
 
     /**获取container对象并添加公用信息
@@ -45,16 +44,13 @@ public abstract class AbstractController {
 
     /**
      * @author chenjiajun
-     * @date 2018-12-16
+     * @date 2018-12-29
      */
     public DevResponse invoke(DevParamContainer container)throws Exception {
         DevResponse res = null;
-        DevServiceInvoke devServiceInvoke =  DevServiceInvoke.getInstance();
-        res = devServiceInvoke.doInvoke(container, DevResponse.class);
+        res = serviceInvoke.doInvoke(container, DevResponse.class);
         return res;
     }
-
-
 
 
     public void flushLogger(Exception e) {
