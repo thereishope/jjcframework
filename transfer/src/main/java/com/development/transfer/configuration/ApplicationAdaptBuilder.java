@@ -11,10 +11,10 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * spring bean工具
  *
- * @author chenjiajun
+ * @author jiajunchen
  * @title ApplicationBuilder
  * @project transfer
- * @date 2019-01-13
+ * @date 2019-04-24
  */
 @Component
 public class ApplicationAdaptBuilder implements ApplicationContextAware {
@@ -36,8 +36,8 @@ public class ApplicationAdaptBuilder implements ApplicationContextAware {
 
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2019-04-23
      */
     public static <T> T getBean(String beanId, Class<T> T) {
         try {
@@ -57,8 +57,8 @@ public class ApplicationAdaptBuilder implements ApplicationContextAware {
     }
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2019-04-23
      */
     public Object getBean(String beanId) {
         try {

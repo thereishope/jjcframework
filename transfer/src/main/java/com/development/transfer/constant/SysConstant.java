@@ -1,7 +1,7 @@
 package com.development.transfer.constant;
 
 /**
- * @author chenjiajun
+ * @author jiajunchen
  * @title SysConstant
  * @project transfer
  * @date 2019-01-08

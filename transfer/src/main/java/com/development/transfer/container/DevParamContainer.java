@@ -10,10 +10,10 @@ import java.util.Map;
  * 统一传参容器
  * 并可设置调用得业务方法
  *
- * @author chenjiajun
+ * @author jiajunchen
  * @title DevParamContainer
  * @project transfer
- * @date 2019-01-13
+ * @date 2018-12-03
  */
 public class DevParamContainer implements Serializable {
 
@@ -31,8 +31,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 获取参数
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public <T> T get(String paramKey, Class<T> clazz) {
         return (T) this.param.get(paramKey);
@@ -41,8 +41,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 获取字符类型的值
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public String getStringValue(String paramKey) {
         return get(paramKey, String.class);
@@ -51,8 +51,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 获取Integer类型的值
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public Integer getIntegerValue(String paramKey) {
         return get(paramKey, Integer.class);
@@ -61,8 +61,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 设置参数
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public void put(String paramKey, Object o) {
         this.param.put(paramKey, o);
@@ -76,8 +76,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 设置业务方法
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public void setMethodEnum(ServiceMethod serviceMethod) {
         this.serviceMethod = serviceMethod;
@@ -88,8 +88,8 @@ public class DevParamContainer implements Serializable {
     }
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public DevParamContainer() {
         this.param = new HashMap<String, Object>();
@@ -99,8 +99,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 清空传参容器内某个值
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public void removeAttr(String key) {
         this.param.remove(key);
@@ -109,8 +109,8 @@ public class DevParamContainer implements Serializable {
     /**
      * 清空参数容器
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-03
      */
     public void clear() {
         this.param.clear();

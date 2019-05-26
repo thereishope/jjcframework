@@ -3,10 +3,10 @@ package com.development.transfer.invoke;
 import com.development.transfer.container.DevParamContainer;
 
 /**
- * @author chenjiajun
+ * @author jiajunchen
  * @title BuisServiceInvoke
  * @project transfer
- * @date 2019-01-13
+ * @date 2018-12-29
  */
 public interface BuisServiceInvoke {
 

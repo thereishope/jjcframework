@@ -7,10 +7,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**不允许删除该类，否则无法调用
- * @author chenjiajun
+ * @author jiajunchen
  * @title ApplicationContextTransferListener
  * @project transfer
- * @date 2019-01-13
+ * @date 2019-04-24
  */
 @Component
 public class ApplicationContextTransferListener implements CommandLineRunner {
@@ -20,8 +20,8 @@ public class ApplicationContextTransferListener implements CommandLineRunner {
 
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2019-04-23
      */
     @Async
     public void run(String... args) throws Exception {

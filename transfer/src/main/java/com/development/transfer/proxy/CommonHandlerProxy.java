@@ -1,10 +1,10 @@
 package com.development.transfer.proxy;
 
 /**公用的自定义监听器静态代理
- * @author chenjiajun
+ * @author jiajunchen
  * @title CommonHandlerProxy
  * @project dev
- * @date 2019-01-13
+ * @date 2019-04-17
  */
 public class CommonHandlerProxy implements CommonHandler{
 
@@ -17,8 +17,8 @@ public class CommonHandlerProxy implements CommonHandler{
 
 
     /**
-      *@author chenjiajun
-      *@date 2019-01-13
+      *@author jiajunchen
+      *@date 2019-04-17
       *
       */
     public boolean allowance() throws Exception {
@@ -26,8 +26,8 @@ public class CommonHandlerProxy implements CommonHandler{
     }
     
     /**
-      *@author chenjiajun
-      *@date 2019-01-13
+      *@author jiajunchen
+      *@date 2019-04-17
       *
       */
 
@@ -37,8 +37,8 @@ public class CommonHandlerProxy implements CommonHandler{
     
     
     /**
-      *@author chenjiajun
-      *@date 2019-01-13
+      *@author jiajunchen
+      *@date 2019-04-17
       *
       */
     public void excute()throws Exception{

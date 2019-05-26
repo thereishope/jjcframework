@@ -9,10 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * spring bean工具
  *
- * @author chenjiajun
+ * @author jiajunchen
  * @title ApplicationBuilder
  * @project transfer
- * @date 2019-01-13
+ * @date 2018-12-29
  */
 public class ApplicationWrapBuilder {
 
@@ -25,8 +25,8 @@ public class ApplicationWrapBuilder {
     }
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-29
      */
     public static <T> T getBean(String beanId, Class<T> T) {
         try {
@@ -40,8 +40,8 @@ public class ApplicationWrapBuilder {
     }
 
     /**
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-29
      */
     public static Object getBean(String beanId) {
         try {

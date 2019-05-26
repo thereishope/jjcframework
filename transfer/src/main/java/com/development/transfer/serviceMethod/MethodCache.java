@@ -7,8 +7,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * method缓存
  *
- * @author chenjiajun
- * @date 2019-01-13
+ * @author jiajunchen
+ * @date 2018-12-29
  */
 public class MethodCache {
 
@@ -26,8 +26,8 @@ public class MethodCache {
     /**
      * 获取内存中缓存的方法信息
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-29
      */
     public static Method getMehod(String key) {
         return cache.get(key);
@@ -36,8 +36,8 @@ public class MethodCache {
     /**
      * 设置方法缓存
      *
-     * @author chenjiajun
-     * @date 2019-01-13
+     * @author jiajunchen
+     * @date 2018-12-29
      */
     public static void setMethod(String key, Method method) {
         cache.put(key, method);

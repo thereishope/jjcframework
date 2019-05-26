@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * 响应封装
  *
- * @author chenjiajun
+ * @author jiajunchen
  * @title DevResponse
  * @project transfer
- * @date 2019-01-13
+ * @date 2018-12-03
  */
 public class DevResponse implements Serializable {
 

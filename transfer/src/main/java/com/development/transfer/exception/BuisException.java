@@ -3,8 +3,8 @@ package com.development.transfer.exception;
 /**
  * 异常封装类
  *
- * @author chenjiajun
- * @date 2019-01-13
+ * @author jiajunchen
+ * @date 2018-12-29
  */
 public class BuisException extends Exception {
 
