@@ -44,7 +44,7 @@
 ## 代码细节
 ### 1.脚手架及适配层
   - 注：有效提升脚手架吞吐量（容器启动后提前加载BuisServiceInvoke所有实现；缓存业务层方法信息；利用请求前置及后置处理避免aop）
-  ![image](https://github.com/thereishope/gitconfig/blob/master/repo/invoke.png)
+  ![image](https://github.com/thereishope/gitconfig/blob/master/repo/invoke%20(1).png)
 #### 1.1 controller中获取参数容器及设置业务层元信息细节
 ```java
 @RequestMapping(value = "/login", method = RequestMethod.POST)
