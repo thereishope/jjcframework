@@ -39,7 +39,7 @@
   - SlaveDataSourceExtend（从数据源加载）
   - Strategy（http工具监控策略）
   - CheckExcutor（代码检查策略）
-  以上接口已进行默认实现，可替换默认实现
+  - 以上接口已进行默认实现，可替换默认实现
 ## 代码细节
 ### 1.脚手架及适配层
   - 注：有效提升脚手架吞吐量（容器启动后提前加载BuisServiceInvoke所有实现；缓存业务层方法信息；利用请求前置及后置处理避免aop）
@@ -482,6 +482,43 @@ public class PropertiesLoadListener implements CommandLineRunner {
 
     }
 }
+/**
+ * jedis实现单机及哨兵集群模式
+ * @author chenjiajun
+ * @title JedisCommonPool
+ * @project tool
+ * @date 2019-04-17
+ */
+public class JedisCommonPool extends Pool<Jedis> {
+
+    // redis部署方式，单节点的话该值为"redis" 哨兵模式的话该值为"redis-sentinel"
+    private String redisType;
+    private GenericObjectPoolConfig poolConfig;
+    private JedisConnectionConfig connectionPool;
+
+    private JedisPool jedisPool;
+    private JedisSentinelPool jedisSentinelPool;
+
+    public JedisCommonPool(final GenericObjectPoolConfig poolConfig, final JedisConnectionConfig connectionPool) {
+        this(getRedisType(connectionPool), poolConfig, connectionPool);
+    }
+
+    // 推荐的构造函数
+    public JedisCommonPool(final String redisType, final GenericObjectPoolConfig poolConfig, final JedisConnectionConfig connectionPool) {
+        this.redisType = redisType;
+        this.poolConfig = poolConfig;
+        this.connectionPool = connectionPool;
+        if ("redis".equalsIgnoreCase(redisType)) {
+            this.jedisPool = new JedisPool(poolConfig, connectionPool.getHost(), connectionPool.getPort(),
+                    connectionPool.getTimeout(), connectionPool.getPassword(), connectionPool.getDatabase());
+            this.jedisSentinelPool = null;
+        } else if ("redis-sentinel".equalsIgnoreCase(redisType)) {
+            this.jedisSentinelPool = new JedisSentinelPool(connectionPool.getMasterName(), getNodes(connectionPool.getSentinels()),
+                    poolConfig, connectionPool.getTimeout(), connectionPool.getPassword(), connectionPool.getDatabase());
+            this.jedisPool = null;
+        }
+    }
+
 ```
 ### 4. 性能介绍
 #### 4.1 测试前提
